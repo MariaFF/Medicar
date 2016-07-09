@@ -1,0 +1,1 @@
+alter table CUIDADOR add PACIENTE PACIENTE;

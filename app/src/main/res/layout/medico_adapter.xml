@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/medico_txNome"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:text="@string/medico_edt_nomeMedico"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/medico_txTelefone"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:text="@string/medico_edt_telefone1"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

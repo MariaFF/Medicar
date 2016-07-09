@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.maria.medicarsugar">
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <application
+        android:name="com.orm.SugarApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Nome do banco -->
+        <meta-data
+            android:name="DATABASE"
+            android:value="medicar_sugar.db"/>
+        <!-- VERSÃO -->
+        <meta-data
+            android:name="VERSION"
+            android:value="11"/>
+        <!-- mostra um log das consultas realizadas -->
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true"/>
+        <!-- Nome do pacote do projeto -->
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.example.maria.medicarsugar"/>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".medico.NovoMedico"
+            android:label="@string/title_activity_novo_medico"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".medico.ListaMedico"
+            android:label="@string/title_activity_lista_medico"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+        <activity android:name=".receita.NovaReceita">
+        </activity>
+        <activity android:name=".receita.ListaReceita">
+        </activity>
+    </application>
+
+</manifest>

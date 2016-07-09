@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Medicar</string>
+
+    <!--Esse fica no menu da barra topo-->
+    <string name="action_settings">Settings</string>
+
+    <!--Botoes da tela inicial-->
+    <string name="inicial_bt_cadastros">Todos os cadastros</string>
+    <string name="inicial_bt_listas">Listas</string>
+    <string name="inicial_bt_info">Informações</string>
+
+    <!-- Botoes da tela de cadastros-->
+    <string name="cad_bt_cadastrarPaciente">Novo Paciente</string>
+    <string name="cad_bt_cadastrarCuidador">Novo Cuidador</string>
+    <string name="cad_bt_cadastrarMedico">Novo Médico</string>
+    <string name="bt_salvar">Salvar</string>
+    <string name="bt_cancelar">Cancelar</string>
+
+    <!-- Botoes da tela de LISTAS-->
+    <string name="lista_bt_listaMedico">Médicos </string>
+    <string name="lista_bt_listaCuidador">Cuidadores</string>
+    <string name="lista_bt_listaPaciente">Paciente</string>
+
+    <!-- Tela de cadastrar novo paciente -->
+    <string name="title_activity_novo_paciente">Novo Paciente</string>
+    <string name="title_activity_lista_pacientes">Lista de Pacientes</string>
+    <string name="title_activity_adapter_paciente">AdapterPaciente</string>
+    <string name="paciente_edt_nomePaciente">Nome do Paciente</string>
+    <string name="paciente_edt_telefone1">Telefone 1</string>
+    <string name="paciente_edt_telefone2">Telefone 2</string>
+    <string name="paciente_edt_idade">Idade</string>
+
+
+    <!-- Tela de cadastrar novo medico -->
+    <string name="title_activity_novo_medico">Novo Médico</string>
+    <string name="title_activity_lista_medico">Lista de Medicos</string>
+    <string name="medico_edt_nomeMedico">Nome do Médico*</string>
+    <string name="medico_edt_crm">CRM*</string>
+    <string name="medico_edt_telefone1">Telefone Principal</string>
+    <string name="medico_edt_telefone2">Telefone Opcional</string>
+
+
+    <!--Telas de cuidador-->
+    <string name="title_activity_novo_cuidador">Novo Cuidador</string>
+    <string name="cuidador_ed_nome">Nome Cuidador *</string>
+    <string name="cuidador_ed_telefone">Telefone</string>
+    <string name="title_activity_lista_cuidador">ListaCuidador</string>
+    <string name="title_activity_cadastros">Cadastros</string>
+    <string name="title_activity_listas">Listas</string>
+    <string name="title_activity_lista_paciente">ListaPaciente</string>
+
+
+</resources>
