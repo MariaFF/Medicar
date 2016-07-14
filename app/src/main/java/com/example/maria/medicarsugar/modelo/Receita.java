@@ -2,40 +2,42 @@ package com.example.maria.medicarsugar.modelo;
 
 import com.orm.SugarRecord;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by maria on 05/05/2016.
  */
-public class Receita extends SugarRecord {
+public class Receita extends SugarRecord implements Serializable {
 
-    private Date dtReceita;
-    private Date dtValidadeReceita;
+    private String dtReceita;
+    private String dtValidadeReceita;
     private Boolean status;
+    private Medico medico;
 
     public Receita(){
 
     }
 
-    public Receita(Date dtReceita, Date dtValidadeReceita, Boolean status) {
+    public Receita(String dtReceita, String dtValidadeReceita, Boolean status) {
         this.dtReceita = dtReceita;
         this.dtValidadeReceita = dtValidadeReceita;
         this.status = status;
     }
 
-    public Date getDtReceita() {
+    public String getDtReceita() {
         return dtReceita;
     }
 
-    public void setDtReceita(Date dtReceita) {
+    public void setDtReceita(String dtReceita) {
         this.dtReceita = dtReceita;
     }
 
-    public Date getDtValidadeReceita() {
+    public String getDtValidadeReceita() {
         return dtValidadeReceita;
     }
 
-    public void setDtValidadeReceita(Date dtValidadeReceita) {
+    public void setDtValidadeReceita(String dtValidadeReceita) {
         this.dtValidadeReceita = dtValidadeReceita;
     }
 

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.maria.medicarsugar.R;
 import com.example.maria.medicarsugar.modelo.Medico;
+import com.example.maria.medicarsugar.receita.NovaReceita;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +77,12 @@ public class NovoMedico extends AppCompatActivity {
                         campoNome.setError("Por favor preecha o campo nome");
                     }
                 }else{
-
+                    medico.setStatus(true);
                     medico.save(medico);
+
+                    Intent intentReceita = new Intent(getApplicationContext(), NovaReceita.class);
+                    intentReceita.putExtra("medico", medico);
+                    startActivity(intentReceita);
                     Toast.makeText(this, "SALVO com sucesso", Toast.LENGTH_SHORT).show();
                 }
                 finish();
@@ -118,6 +123,7 @@ public class NovoMedico extends AppCompatActivity {
         finish();
     }
     public Medico pegaMedico(){
+
         medico.setNome(campoNome.getText().toString());
         medico.setTelefone1(campoTelefone1.getText().toString());
         medico.setTelefone2(campoTelefone2.getText().toString());

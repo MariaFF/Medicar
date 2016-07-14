@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.maria.medicarsugar.receita.NovaReceita">
+
+    <item
+        android:id="@+id/menu_receita_salvar"
+        android:title="Salvar"
+        android:icon="@drawable/ic_confirmar"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/menu_receita_cancelar"
+        android:title="Cancelar"
+        android:icon="@drawable/ic_cancelar"
+        app:showAsAction="always"/>
+
+</menu>

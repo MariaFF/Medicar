@@ -29,13 +29,11 @@ import java.util.List;
 
 public class ListaMedico extends AppCompatActivity {
 
-    private List<Medico> listaMedicos = new ArrayList<>();
+
     private ListView listaViewMedico;
-    Medico medico;
+    private Medico medico;
     private MedicoAdapter medicoAdapter;
-    private NovoMedico novoMedico;
-    private Bundle bundle = new Bundle();
-    private SearchView searchView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

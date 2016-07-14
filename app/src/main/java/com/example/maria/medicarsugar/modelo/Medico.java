@@ -13,16 +13,17 @@ public class Medico extends SugarRecord implements Serializable{
     private String nome;
     private String telefone1;
     private String telefone2;
-    //private Boolean status;
+    private Boolean status;
 
     public Medico(){
 
     }
 
-    public Medico(String nome, String telefone1, String telefone2) {
+    public Medico(String nome, String telefone1, String telefone2, Boolean status) {
         this.nome = nome;
         this.telefone1 = telefone1;
         this.telefone2 = telefone2;
+        this.status = status;
 
     }
 
@@ -50,4 +51,11 @@ public class Medico extends SugarRecord implements Serializable{
         this.telefone2 = telefone2;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }

@@ -3,6 +3,7 @@
           package="com.example.maria.medicarsugar">
 
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
@@ -14,11 +15,11 @@
         <!-- Nome do banco -->
         <meta-data
             android:name="DATABASE"
-            android:value="medicar_sugar.db"/>
+            android:value="medicar_novo.db"/>
         <!-- VERSÃO -->
         <meta-data
             android:name="VERSION"
-            android:value="11"/>
+            android:value="2"/>
         <!-- mostra um log das consultas realizadas -->
         <meta-data
             android:name="QUERY_LOG"
@@ -41,11 +42,6 @@
             android:label="@string/title_activity_lista_medico"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
 
@@ -56,6 +52,17 @@
         <activity android:name=".receita.NovaReceita">
         </activity>
         <activity android:name=".receita.ListaReceita">
+        </activity>
+        <activity android:name=".medicamento.NovoMedicamento">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".medicamento.ListaMedicamento">
+        </activity>
+        <activity android:name=".movimentacao.ListaMovimentacao">
         </activity>
     </application>
 
