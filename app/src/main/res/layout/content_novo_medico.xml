@@ -15,18 +15,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:text="@string/medico_edt_nomeMedico"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:id="@+id/textViewNome" />
+        android:layout_marginTop="?attr/actionBarSize">
     <EditText
         android:id="@+id/medico_edt_nome"
+        android:hint="@string/medico_edt_nomeMedico"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    </android.support.design.widget.TextInputLayout>
 
     <TextView
         android:id="@+id/textViewTel1"

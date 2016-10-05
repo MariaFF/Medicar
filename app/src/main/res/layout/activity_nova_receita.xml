@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Médico que prescreveu: "/>
+
     <TextView
         android:id="@+id/receita_medico"
         android:layout_width="wrap_content"
@@ -27,25 +28,27 @@
         android:text="Nome do médico**"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Data da Receita"/>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <EditText
         android:id="@+id/receita_dt_receita"
+        android:hint="@string/receita_edt_dtReceita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Data de Vencimento da Receita"/>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <EditText
         android:id="@+id/receita_dt_validade"
+        android:hint="@string/receita_edt_dtFinalReceita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"/>
+    </android.support.design.widget.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"

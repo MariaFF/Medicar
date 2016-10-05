@@ -48,8 +48,8 @@ public class ReceitaAdapter extends BaseAdapter {
         TextView tx_dtReceita = (TextView) view.findViewById(R.id.receita_tx_dtReceita);
         tx_dtReceita.setText(receita.getDtReceita());
 
-        TextView tx_dtValidade = (TextView) view.findViewById(R.id.receita_dt_validade);
-        tx_dtValidade.setText(receita.getDtValidadeReceita());
+        //TextView tx_dtValidade = (TextView) view.findViewById(R.id.receita_dt_validade);
+        //tx_dtValidade.setText(receita.getDtValidadeReceita());
 
         return view;
     }

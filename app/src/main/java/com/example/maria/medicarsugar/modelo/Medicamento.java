@@ -4,45 +4,40 @@ import android.content.Intent;
 import android.widget.RadioGroup;
 
 import com.orm.SugarRecord;
-
+import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by maria on 10/07/2016.
  */
-public class Medicamento extends SugarRecord {
+public class Medicamento extends SugarRecord implements Serializable {
 
     private String nome;
-    private String dtVencimento;
-    private Integer qtdeTotal;
-    private Double qtdeTomar;
-    private String dtInicio;
+
+    private Calendar dtInicio;
     private String dtTermino;
-    private Integer horaInicio;
+    private String dtVencimento;
+
     private Boolean retomavel;
-    private Double prazoRetomar;
-    private Integer intervalo;
+    private String prazoRetomar;
+
+    private Date intervalo1;
+    private Date intervalo2;
+    private Date intervalo3;
+
+    private Integer qtdeTotal;
+
+    private Double dose1;
+    private Double dose2;
+    private Double dose3;
+
     private Boolean status;
 
-    private Receita receita;
+
 
     public Medicamento(){
 
-    }
-
-    public Medicamento(String nome, String dtVencimento, Integer qtdeTotal, Double qtdeTomar, String dtInicio,
-                       String dtTermino, Integer horaInicio, Boolean retomavel, Double prazoRetomar, Integer intervalo, Boolean status) {
-        this.nome = nome;
-        this.dtVencimento = dtVencimento;
-        this.qtdeTotal = qtdeTotal;
-        this.qtdeTomar = qtdeTomar;
-        this.dtInicio = dtInicio;
-        this.dtTermino = dtTermino;
-        this.horaInicio = horaInicio;
-        this.retomavel = retomavel;
-        this.prazoRetomar = prazoRetomar;
-        this.intervalo = intervalo;
-        this.status = status;
     }
 
     public String getNome() {
@@ -53,35 +48,11 @@ public class Medicamento extends SugarRecord {
         this.nome = nome;
     }
 
-    public String getDtVencimento() {
-        return dtVencimento;
-    }
-
-    public void setDtVencimento(String dtVencimento) {
-        this.dtVencimento = dtVencimento;
-    }
-
-    public Integer getQtdeTotal() {
-        return qtdeTotal;
-    }
-
-    public void setQtdeTotal(Integer qtdeTotal) {
-        this.qtdeTotal = qtdeTotal;
-    }
-
-    public Double getQtdeTomar() {
-        return qtdeTomar;
-    }
-
-    public void setQtdeTomar(Double qtdeTomar) {
-        this.qtdeTomar = qtdeTomar;
-    }
-
-    public String getDtInicio() {
+    public Calendar getDtInicio() {
         return dtInicio;
     }
 
-    public void setDtInicio(String dtInicio) {
+    public void setDtInicio(Calendar dtInicio) {
         this.dtInicio = dtInicio;
     }
 
@@ -93,12 +64,12 @@ public class Medicamento extends SugarRecord {
         this.dtTermino = dtTermino;
     }
 
-    public Integer getHoraInicio() {
-        return horaInicio;
+    public String getDtVencimento() {
+        return dtVencimento;
     }
 
-    public void setHoraInicio(Integer horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setDtVencimento(String dtVencimento) {
+        this.dtVencimento = dtVencimento;
     }
 
     public Boolean getRetomavel() {
@@ -109,20 +80,68 @@ public class Medicamento extends SugarRecord {
         this.retomavel = retomavel;
     }
 
-    public Double getPrazoRetomar() {
+    public String getPrazoRetomar() {
         return prazoRetomar;
     }
 
-    public void setPrazoRetomar(Double prazoRetomar) {
+    public void setPrazoRetomar(String prazoRetomar) {
         this.prazoRetomar = prazoRetomar;
     }
 
-    public Integer getIntervalo() {
-        return intervalo;
+    public Date getIntervalo1() {
+        return intervalo1;
     }
 
-    public void setIntervalo(Integer intervalo) {
-        this.intervalo = intervalo;
+    public void setIntervalo1(Date intervalo1) {
+        this.intervalo1 = intervalo1;
+    }
+
+    public Date getIntervalo2() {
+        return intervalo2;
+    }
+
+    public void setIntervalo2(Date intervalo2) {
+        this.intervalo2 = intervalo2;
+    }
+
+    public Date getIntervalo3() {
+        return intervalo3;
+    }
+
+    public void setIntervalo3(Date intervalo3) {
+        this.intervalo3 = intervalo3;
+    }
+
+    public Integer getQtdeTotal() {
+        return qtdeTotal;
+    }
+
+    public void setQtdeTotal(Integer qtdeTotal) {
+        this.qtdeTotal = qtdeTotal;
+    }
+
+    public Double getDose1() {
+        return dose1;
+    }
+
+    public void setDose1(Double dose1) {
+        this.dose1 = dose1;
+    }
+
+    public Double getDose2() {
+        return dose2;
+    }
+
+    public void setDose2(Double dose2) {
+        this.dose2 = dose2;
+    }
+
+    public Double getDose3() {
+        return dose3;
+    }
+
+    public void setDose3(Double dose3) {
+        this.dose3 = dose3;
     }
 
     public Boolean getStatus() {
@@ -132,7 +151,4 @@ public class Medicamento extends SugarRecord {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-
-
-
 }

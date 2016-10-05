@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -26,8 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
 
-    <Button
-
+    <com.software.shell.fab.ActionButton
         android:id="@+id/bt_novo"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -35,11 +35,19 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/fundo_bt"
-        android:elevation="6dp"
-        android:text="+"
-        android:textColor="#ffffff"
-        android:textSize="40sp"
-        android:stateListAnimator="@null"/>
+        fab:type="DEFAULT"
+        fab:button_color="@color/colorFAB"
+        fab:button_colorPressed="@color/colorFABPressed"
+        fab:image="@drawable/ic_plus"
+        fab:image_size="24dp"
+        fab:shadow_color="#757575"
+        fab:shadow_radius="1.0dp"
+        fab:shadow_xOffset="0.5dp"
+        fab:shadow_yOffset="1.0dp"
+        fab:rippleEffect_enabled="false"
+        fab:shadowResponsiveEffect_enabled="true"
+
+
+        />
 
 </RelativeLayout>

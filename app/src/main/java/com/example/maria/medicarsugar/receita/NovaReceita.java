@@ -1,6 +1,8 @@
 package com.example.maria.medicarsugar.receita;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.maria.medicarsugar.R;
+import com.example.maria.medicarsugar.fragments.ListaReceitaFragment;
 import com.example.maria.medicarsugar.modelo.Medico;
 import com.example.maria.medicarsugar.modelo.Receita;
 
@@ -48,6 +51,7 @@ public class NovaReceita extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.menu_receita_salvar:
                 if(receita.getId() != null) {
@@ -60,8 +64,9 @@ public class NovaReceita extends AppCompatActivity {
                     receita.setStatus(true);
                     receita.save();
                     Toast.makeText(this, "SALVO com sucesso", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), ListaReceita.class);
-                    startActivity(intent);
+                    Intent intentListaReceita = new Intent(getApplicationContext(), ListaReceitaFragment.class);
+                    startActivity(intentListaReceita);
+
                 }
             break;
         }

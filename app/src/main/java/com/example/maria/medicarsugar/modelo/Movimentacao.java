@@ -11,17 +11,19 @@ public class Movimentacao extends SugarRecord {
     private String hora;
     private Double qtdeTomada;
     private Boolean tomado;
+    private Boolean status;
 
     private Medicamento medicamento;
 
     public Movimentacao() {
     }
 
-    public Movimentacao(String dtTomado, String hora, Double qtdeTomada, Boolean tomado) {
+    public Movimentacao(String dtTomado, String hora, Double qtdeTomada, Boolean tomado, Boolean status) {
         this.dtTomado = dtTomado;
         this.hora = hora;
         this.qtdeTomada = qtdeTomada;
         this.tomado = tomado;
+        this.status = status;
     }
 
     public String getDtTomado() {
@@ -54,5 +56,21 @@ public class Movimentacao extends SugarRecord {
 
     public void setTomado(Boolean tomado) {
         this.tomado = tomado;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public Medicamento getMedicamento() {
+        return medicamento;
+    }
+
+    public void setMedicamento(Medicamento medicamento) {
+        this.medicamento = medicamento;
     }
 }

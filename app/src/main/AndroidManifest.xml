@@ -3,6 +3,8 @@
           package="com.example.maria.medicarsugar">
 
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.orm.SugarApp"
@@ -15,11 +17,11 @@
         <!-- Nome do banco -->
         <meta-data
             android:name="DATABASE"
-            android:value="medicar_novo.db"/>
+            android:value="medicar_lista_vazia.db"/>
         <!-- VERSÃO -->
         <meta-data
             android:name="VERSION"
-            android:value="2"/>
+            android:value="1"/>
         <!-- mostra um log das consultas realizadas -->
         <meta-data
             android:name="QUERY_LOG"
@@ -32,7 +34,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".medico.NovoMedico"
             android:label="@string/title_activity_novo_medico"
@@ -51,18 +59,15 @@
         </activity>
         <activity android:name=".receita.NovaReceita">
         </activity>
-        <activity android:name=".receita.ListaReceita">
-        </activity>
         <activity android:name=".medicamento.NovoMedicamento">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".medicamento.ListaMedicamento">
         </activity>
         <activity android:name=".movimentacao.ListaMovimentacao">
+        </activity>
+        <activity android:name=".fragments.ListaMedicamentosSuspensosFragment">
+        </activity>
+        <activity android:name=".medicamento.DialogIntervaloMedicamento">
         </activity>
     </application>
 

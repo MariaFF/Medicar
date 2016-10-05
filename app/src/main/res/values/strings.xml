@@ -4,50 +4,32 @@
     <!--Esse fica no menu da barra topo-->
     <string name="action_settings">Settings</string>
 
-    <!--Botoes da tela inicial-->
-    <string name="inicial_bt_cadastros">Todos os cadastros</string>
-    <string name="inicial_bt_listas">Listas</string>
-    <string name="inicial_bt_info">Informações</string>
-
-    <!-- Botoes da tela de cadastros-->
-    <string name="cad_bt_cadastrarPaciente">Novo Paciente</string>
-    <string name="cad_bt_cadastrarCuidador">Novo Cuidador</string>
-    <string name="cad_bt_cadastrarMedico">Novo Médico</string>
-    <string name="bt_salvar">Salvar</string>
-    <string name="bt_cancelar">Cancelar</string>
-
-    <!-- Botoes da tela de LISTAS-->
-    <string name="lista_bt_listaMedico">Médicos </string>
-    <string name="lista_bt_listaCuidador">Cuidadores</string>
-    <string name="lista_bt_listaPaciente">Paciente</string>
-
-    <!-- Tela de cadastrar novo paciente -->
-    <string name="title_activity_novo_paciente">Novo Paciente</string>
-    <string name="title_activity_lista_pacientes">Lista de Pacientes</string>
-    <string name="title_activity_adapter_paciente">AdapterPaciente</string>
-    <string name="paciente_edt_nomePaciente">Nome do Paciente</string>
-    <string name="paciente_edt_telefone1">Telefone 1</string>
-    <string name="paciente_edt_telefone2">Telefone 2</string>
-    <string name="paciente_edt_idade">Idade</string>
-
-
     <!-- Tela de cadastrar novo medico -->
-    <string name="title_activity_novo_medico">Novo Médico</string>
-    <string name="title_activity_lista_medico">Lista de Medicos</string>
+    <string name="title_activity_novo_medico">Médico</string>
+    <string name="title_activity_lista_medico">Médicos</string>
+
     <string name="medico_edt_nomeMedico">Nome do Médico*</string>
-    <string name="medico_edt_crm">CRM*</string>
-    <string name="medico_edt_telefone1">Telefone Principal</string>
+    <string name="medico_edt_telefone1">Telefone Principal*</string>
     <string name="medico_edt_telefone2">Telefone Opcional</string>
 
+    <!-- Tela de cadastrar novo medicamento -->
+    <string name="medicamento_edt_nome">Nome do Medicamento*</string>
+    <string name="medicamento_edt_vencimento">Vencimento do Medicamento*</string>
+    <string name="medicamento_edt_qtdeTotal">Quantidade total de medicamentos*</string>
+    <string name="medicamento_edt_qtdeTomar">Quantidade a ser tomada*</string>
+    <string name="medicamento_edt_dtInicial">Data que iniciou esse medicamento*</string>
+    <string name="medicamento_edt_dtFinal">Data Final*</string>
+    <string name="medicamento_edt_retomavel">Retomável (Caso haja esquecimento)*</string>
+    <string name="medicamento_edt_prazoRetomar">Prazo para retomar*</string>
+    <string name="medicamento_edt_horaMedicamento">Hora do medicamento*</string>
+    <string name="medicamento_edt_intervalo">Intervalo (ex: 8hs em 8hs)*</string>
 
-    <!--Telas de cuidador-->
-    <string name="title_activity_novo_cuidador">Novo Cuidador</string>
-    <string name="cuidador_ed_nome">Nome Cuidador *</string>
-    <string name="cuidador_ed_telefone">Telefone</string>
-    <string name="title_activity_lista_cuidador">ListaCuidador</string>
-    <string name="title_activity_cadastros">Cadastros</string>
-    <string name="title_activity_listas">Listas</string>
-    <string name="title_activity_lista_paciente">ListaPaciente</string>
+    <string name="receita_edt_dtReceita">Data da Receita</string>
+    <string name="receita_edt_dtFinalReceita">Validade da Receita</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

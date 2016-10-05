@@ -4,6 +4,7 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.example.maria.medicarsugar.medicamento.NovoMedicamento">
 
+
     <item
         android:id="@+id/menu_medicamento_salvar"
         android:title="Salvar"

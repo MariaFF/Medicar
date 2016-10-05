@@ -15,59 +15,46 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome do Medicamento"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:id="@+id/medicamento_nome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vencimento"/>
+            android:hint="@string/medicamento_edt_nome"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:id="@+id/medicamento_vencimento"
+            android:hint="@string/medicamento_edt_vencimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantidade Total"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:id="@+id/medicamento_qtde_total"
+            android:hint="@string/medicamento_edt_qtdeTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantidade a ser tomada"/>
-        <EditText
-            android:id="@+id/medicamento_qtde_tomar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data Inicial"/>
-        <EditText
-            android:id="@+id/medicamento_dt_inicial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Data Final"/>
-        <EditText
-            android:id="@+id/medicamento_dt_final"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <ImageButton
+            android:id="@+id/medicamento_bt_dt_inicial"
+            android:src="@drawable/ic_calendar_blank"
+            android:layout_width="50dp"
+            android:layout_height="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -95,33 +82,67 @@
             </LinearLayout>
         </RadioGroup>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prazo para retomar"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:id="@+id/medicamento_prazo_retomar"
+            android:hint="@string/medicamento_edt_prazoRetomar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hora do Medicamento"/>
+            android:text="Horário dos lembretes"/>
+        <Spinner
+            android:id="@+id/spinner_intervalo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tv_intervalo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Primeiro Intervalo"/>
         <EditText
-            android:id="@+id/medicamento_hora_inicial"
+            android:id="@+id/ed_intervalo1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:id="@+id/tv_intervalo2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Intervalo (Ex: 8hs em 8hs)"/>
+            android:text="Segundo Intervalo"/>
         <EditText
-            android:id="@+id/medicamento_intervalo"
+            android:id="@+id/ed_intervalo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <TextView
+            android:id="@+id/tv_intervalo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terceiro Intervalo"/>
+        <EditText
+            android:id="@+id/ed_intervalo3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* Campos Obrigatórios"
+            android:layout_marginTop="40dp"
+            android:textColor="#8B0000"
+            android:id="@+id/textView" />
     </LinearLayout>
 
 </ScrollView>
+
