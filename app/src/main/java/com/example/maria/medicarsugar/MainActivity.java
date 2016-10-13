@@ -12,11 +12,14 @@ import android.widget.Toast;
 
 import com.example.maria.medicarsugar.ListaVazia.FragmentListaVazia;
 import com.example.maria.medicarsugar.config_caixa.LayoutCaixaFragment;
+import com.example.maria.medicarsugar.fragments.ListaCuidadorFragment;
 import com.example.maria.medicarsugar.fragments.ListaMedicamentoFragment;
 import com.example.maria.medicarsugar.fragments.ListaMedicamentosSuspensosFragment;
 import com.example.maria.medicarsugar.fragments.ListaMedicoFragment;
 import com.example.maria.medicarsugar.fragments.ListaMovimentacaoFragment;
 import com.example.maria.medicarsugar.fragments.ListaReceitaFragment;
+import com.example.maria.medicarsugar.modelo.Medicamento;
+import com.example.maria.medicarsugar.modelo.Medico;
 import com.example.maria.medicarsugar.modelo.Movimentacao;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Drawer result;
     private ListView listViewInicial;
     private List<Movimentacao> listarMovimentacao;
+    private List<Medicamento> listarMedicamentos;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private FragmentTransaction tx = fragmentManager.beginTransaction();
 
@@ -45,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         listViewInicial = (ListView) findViewById(R.id.listViewInicio);
-        listarMovimentacao = Movimentacao.listAll(Movimentacao.class);
+        //listarMovimentacao = Movimentacao.listAll(Movimentacao.class);
+        listarMedicamentos = Medicamento.listAll(Medicamento.class);
 
-        if(listarMovimentacao.size() == 0){
-            
-            tx.replace(R.id.main_frame, new ListaMedicoFragment());
+
+        if(listarMedicamentos.size() == 0){
+            tx.replace(R.id.main_frame, new FragmentListaVazia());
+            tx.commit();
+        }else {
+            tx.replace(R.id.main_frame, new ListaMedicamentoFragment());
             tx.commit();
         }
 
@@ -59,13 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName("Inicio").withIcon(getResources().getDrawable(R.drawable.ic_heart_pulse));
-        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Medicamento").withIcon(getResources().getDrawable(R.drawable.ic_pill));
-        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName("Médico").withIcon(getResources().getDrawable(R.drawable.ic_stethoscope));
-        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName("Receita").withIcon(getResources().getDrawable(R.drawable.ic_hospital));
-        PrimaryDrawerItem item5 = new PrimaryDrawerItem().withName("Medicamentos Suspensos").withIcon(getResources().getDrawable(R.drawable.ic_pill));
+        final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName("Medicamento").withIcon(getResources().getDrawable(R.drawable.ic_pill));
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Médico").withIcon(getResources().getDrawable(R.drawable.ic_stethoscope));
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName("Cuidador").withIcon(getResources().getDrawable(R.drawable.ic_hospital));
+        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName("Medicamentos Suspensos").withIcon(getResources().getDrawable(R.drawable.ic_pill));
 
-        PrimaryDrawerItem item6 = new PrimaryDrawerItem().withName("Configurações da Caixa").withIcon(getResources().getDrawable(R.drawable.ic_settings));
+        PrimaryDrawerItem item5 = new PrimaryDrawerItem().withName("Configurações da Caixa").withIcon(getResources().getDrawable(R.drawable.ic_settings));
 
         result = new DrawerBuilder()
                 .withActivity(this)
@@ -80,13 +87,8 @@ public class MainActivity extends AppCompatActivity {
                     item2,
                     item3,
                     item4,
-                    item5,
-
-                    new DividerDrawerItem(),
-
-                    item6
-
-
+                        new DividerDrawerItem(),
+                    item5
 
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -97,46 +99,37 @@ public class MainActivity extends AppCompatActivity {
                         switch (position){
                             case 0:
                                 //INICIO
-                                //substituir o main_frame pela instancia de listaReceitaFragment
+                                //substituir o main_frame pela instancia de ListaMedicamento
                                 
-                                tx.replace(R.id.main_frame, new ListaMedicoFragment());
-                                tx.commit();
-                                //Toast.makeText(MainActivity.this, "Onclick INICIO", Toast.LENGTH_SHORT).show();
-                            break;
-                            case 1:
-                                //REMEDIO
-                                tx = fragmentManager.beginTransaction();
                                 tx.replace(R.id.main_frame, new ListaMedicamentoFragment());
                                 tx.commit();
-                                //Toast.makeText(MainActivity.this, "OnclickMedicamento", Toast.LENGTH_SHORT).show();
-                            break;
 
-                            case 2:
+                            break;
+                            case 1:
                                 //MEDICO
                                 tx = fragmentManager.beginTransaction();
                                 tx.replace(R.id.main_frame, new ListaMedicoFragment());
                                 tx.commit();
-                                //Toast.makeText(MainActivity.this, "OnclickMedico", Toast.LENGTH_SHORT).show();
+
                             break;
 
-                            //RECEITA
-                            case 3:
-                                tx.replace(R.id.main_frame, new ListaReceitaFragment());
+                            case 2:
+                                //CUIDADOR
+                                tx = fragmentManager.beginTransaction();
+                                tx.replace(R.id.main_frame, new ListaCuidadorFragment());
                                 tx.commit();
-                                //Toast.makeText(MainActivity.this, "Onclick Receita", Toast.LENGTH_SHORT).show();
+
                             break;
 
-                            //Lista de medicamentos Suspensos
-                            case 5:
+                            //MEDICAMENTOS SUSPENSOS
+                            case 3:
                                 tx.replace(R.id.main_frame, new ListaMedicamentosSuspensosFragment());
                                 tx.commit();
-                                //Toast.makeText(MainActivity.this, "Onclick Config", Toast.LENGTH_SHORT).show();
-                                Log.i("Main", "Clicou config");
 
                             break;
 
                             //CONFIGURAÇÃO DA CAIXA
-                            case 6:
+                            case 5:
                                 tx.replace(R.id.main_frame, new LayoutCaixaFragment());
                                 tx.commit();
                                 //Toast.makeText(MainActivity.this, "Onclick Config", Toast.LENGTH_SHORT).show();

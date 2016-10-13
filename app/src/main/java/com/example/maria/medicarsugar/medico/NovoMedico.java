@@ -60,11 +60,9 @@ public class NovoMedico extends AppCompatActivity {
     }
 
     public Medico pegaMedico(){
-
         medico.setNome(campoNome.getText().toString());
         medico.setTelefone1(campoTelefone1.getText().toString());
         medico.setTelefone2(campoTelefone2.getText().toString());
-
         return medico;
     }
 
@@ -133,6 +131,8 @@ public class NovoMedico extends AppCompatActivity {
                     }
                 }
                 break;
+            case R.id.menu_medico_cancelar:
+                finish();
         }
 
         return super.onOptionsItemSelected(item);
