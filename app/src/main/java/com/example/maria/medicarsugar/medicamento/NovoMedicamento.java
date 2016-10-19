@@ -3,6 +3,7 @@ package com.example.maria.medicarsugar.medicamento;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +23,8 @@ import android.widget.Toast;
 
 import com.example.maria.medicarsugar.R;
 import com.example.maria.medicarsugar.modelo.Medicamento;
+import com.example.maria.medicarsugar.util.Mask;
+import com.mikepenz.iconics.utils.Utils;
 
 
 import java.text.DecimalFormat;
@@ -36,11 +39,16 @@ public class NovoMedicamento extends AppCompatActivity{
     private Medicamento medicamento;
 
     private EditText campoNome;
-    private ImageButton imDtInicio;
+    private EditText campoDtInicio;
     private EditText campoQtdeTotal;
+
+    private EditText campoDtVencimento;
 
     private RadioGroup radioRetomavel;
     private EditText campoPrazoRetormar;
+
+    private RadioButton rb_sim;
+    private RadioButton rb_nao;
 
     private TextView tvIntervalo1;
     private TextView tvIntervalo2;
@@ -64,9 +72,13 @@ public class NovoMedicamento extends AppCompatActivity{
         medicamento = new Medicamento();
         recuperarComponentes();
 
+        radioRetomavel.check(R.id.medicamento_retomavel_sim);
+
         campoIntervalo1.setOnClickListener(abrirDialogParaInformarHoraEQtde());
         campoIntervalo2.setOnClickListener(abrirDialogParaInformarHoraEQtde());
         campoIntervalo3.setOnClickListener(abrirDialogParaInformarHoraEQtde());
+
+
 
         setarVisibilidadeCampos(View.INVISIBLE);
 
@@ -156,11 +168,19 @@ public class NovoMedicamento extends AppCompatActivity{
      */
     private void recuperarComponentes() {
         this.campoNome = (EditText) findViewById(R.id.medicamento_nome);
-        imDtInicio = (ImageButton) findViewById(R.id.medicamento_bt_dt_inicial);
+        campoDtInicio = (EditText) findViewById(R.id.medicamento_ed_dt_inicial);
+        campoDtInicio.addTextChangedListener(Mask.insert("##/##/####", campoDtInicio));
+
+        campoDtVencimento = (EditText) findViewById(R.id.medicamento_ed_dt_vencimento);
+        campoDtVencimento.addTextChangedListener(Mask.insert("##/##/####", campoDtVencimento));
+
         campoQtdeTotal = (EditText) findViewById(R.id.medicamento_qtde_total);
 
         this.radioRetomavel = (RadioGroup) findViewById(R.id.medicamento_retomavel);
         this.campoPrazoRetormar= (EditText) findViewById(R.id.medicamento_prazo_retomar);
+
+        rb_sim = (RadioButton) findViewById(R.id.medicamento_retomavel_sim);
+        rb_nao = (RadioButton) findViewById(R.id.medicamento_retomavel_nao);
 
         tvIntervalo1 = (TextView) findViewById(R.id.tv_intervalo1);
         tvIntervalo2 = (TextView) findViewById(R.id.tv_intervalo2);
@@ -185,17 +205,31 @@ public class NovoMedicamento extends AppCompatActivity{
             case(R.id.menu_medicamento_salvar):
                 pegaMedicamento();
                 if(medicamento.getId() != null){
-                    medicamento.save();
-                    Log.i("NovoMedicamento", "Status: "+medicamento.getStatus());
-                    Toast.makeText(NovoMedicamento.this, "Alterado com sucesso", Toast.LENGTH_SHORT).show();
+                    if(!TextUtils.isEmpty(campoNome.getText().toString())) {
+                        medicamento.save();
+                        Log.i("NovoMedicamento", "Radio Bt: " + medicamento.getRetomavel());
+                        Toast.makeText(NovoMedicamento.this, "Alterado", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }else {
+                        campoNome.requestFocus();
+                        campoNome.setError("Por favor, preencha o campo nome");
+
+                    }
+                // SALVAR
                 }else{
-                    medicamento.save();
-                    Log.i("NovoMedicamento", "Status: "+medicamento.getStatus());
-                    Toast.makeText(NovoMedicamento.this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
-                    //Intent intent = new Intent(getApplicationContext(), ListaMedicamentoFragment.class);
-                    //startActivity(intent);
+                    if(!TextUtils.isEmpty(campoNome.getText().toString())) {
+                        medicamento.save();
+                        Log.i("NovoMedicamento", "Radio Bt: " + medicamento.getRetomavel());
+                        Toast.makeText(NovoMedicamento.this, "Salvo", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }else {
+                        campoNome.requestFocus();
+                        campoNome.setError("Por favor, preencha o campo nome");
+                    }
                 }
-            finish();
+
             break;
 
             case R.id.menu_medicamento_cancelar:
@@ -301,30 +335,38 @@ public class NovoMedicamento extends AppCompatActivity{
 
     public Medicamento pegaMedicamento(){
         medicamento.setNome(campoNome.getText().toString());
-        verificarRb();
+        verificarRadioButton();
         medicamento.setPrazoRetomar(campoPrazoRetormar.getText().toString());
         medicamento.setStatus(true);
 
         return medicamento;
     }
 
-
-    public void verificarRb(){
-        RadioButton rb_sim = (RadioButton) findViewById(R.id.medicamento_retomavel_sim);
-        RadioButton rb_nao = (RadioButton) findViewById(R.id.medicamento_retomavel_nao);
-
-
-        if(rb_sim.isChecked()) {
-            medicamento.setRetomavel(true);
-        }else if(rb_nao.isChecked()) {
-            medicamento.setRetomavel(false);
-
-        }else {
-            radioRetomavel.requestFocus();
-            rb_sim.setError("Por favor, selecione uma das opções");
+    public void verificarRadioButton(){
+        switch (radioRetomavel.getCheckedRadioButtonId()){
+            case R.id.medicamento_retomavel_sim:
+                medicamento.setRetomavel(true);
+                break;
+            case R.id.medicamento_retomavel_nao:
+                medicamento.setRetomavel(false);
+                break;
         }
     }
 
+
+    public void verificarRb() {
+
+        if (rb_sim.isChecked()) {
+            if (campoPrazoRetormar.getText().toString().isEmpty()) {
+                campoPrazoRetormar.requestFocus();
+                campoPrazoRetormar.setError("Por favor, informe o prazo para retormar o medicamento");
+            } else
+                medicamento.setRetomavel(true);
+        } else if (rb_nao.isChecked()) {
+
+            medicamento.setRetomavel(false);
+        }
+    }
 /*
     private void iniciarData(){
         if (ano == 0){

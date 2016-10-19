@@ -21,7 +21,7 @@
         <!-- VERSÃO -->
         <meta-data
             android:name="VERSION"
-            android:value="2"/>
+            android:value="3"/>
         <!-- mostra um log das consultas realizadas -->
         <meta-data
             android:name="QUERY_LOG"
@@ -61,16 +61,11 @@
         </activity>
         <activity android:name=".medicamento.NovoMedicamento">
         </activity>
-        <activity android:name=".medicamento.ListaMedicamento">
-        </activity>
         <activity android:name=".movimentacao.ListaMovimentacao">
         </activity>
         <activity android:name=".cuidador.NovoCuidador">
         </activity>
-        <activity android:name=".adapter.SpinnerMedicamento">
-        </activity>
-        <activity android:name=".adapter.SpinnerSom">
-        </activity>
+
     </application>
 
 </manifest>

@@ -15,7 +15,7 @@ public class Medicamento extends SugarRecord implements Serializable {
 
     private String nome;
 
-    private Calendar dtInicio;
+    private String dtInicio;
     private String dtTermino;
     private String dtVencimento;
 
@@ -27,12 +27,15 @@ public class Medicamento extends SugarRecord implements Serializable {
     private Date intervalo3;
 
     private Integer qtdeTotal;
+    //private Integer qtdeRestante;
+
+
 
     private Double dose1;
     private Double dose2;
     private Double dose3;
 
-    private Boolean status;
+    private boolean status;
 
 
 
@@ -48,11 +51,11 @@ public class Medicamento extends SugarRecord implements Serializable {
         this.nome = nome;
     }
 
-    public Calendar getDtInicio() {
+    public String getDtInicio() {
         return dtInicio;
     }
 
-    public void setDtInicio(Calendar dtInicio) {
+    public void setDtInicio(String dtInicio) {
         this.dtInicio = dtInicio;
     }
 
@@ -113,6 +116,7 @@ public class Medicamento extends SugarRecord implements Serializable {
     }
 
     public Integer getQtdeTotal() {
+
         return qtdeTotal;
     }
 
@@ -144,11 +148,20 @@ public class Medicamento extends SugarRecord implements Serializable {
         this.dose3 = dose3;
     }
 
-    public Boolean getStatus() {
+/*    public Integer getQtdeRestante() {
+
+        return qtdeRestante;
+    }
+
+    public void setQtdeRestante(Integer qtdeRestante) {
+        this.qtdeRestante = qtdeRestante;
+    }*/
+
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 }

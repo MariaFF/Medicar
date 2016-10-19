@@ -21,6 +21,7 @@ import com.example.maria.medicarsugar.R;
 import com.example.maria.medicarsugar.fragments.ListaMedicoFragment;
 import com.example.maria.medicarsugar.modelo.Medico;
 import com.example.maria.medicarsugar.receita.NovaReceita;
+import com.example.maria.medicarsugar.util.Mask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class NovoMedico extends AppCompatActivity {
         this.setTitle("Novo Médico");
         this.campoNome = (EditText) findViewById(R.id.medico_edt_nome);
         this.campoTelefone1 = (EditText) findViewById(R.id.medico_edt_telefone1);
+        campoTelefone1.addTextChangedListener(Mask.insert("(##)####-#####", campoTelefone1));
         this.campoTelefone2 = (EditText) findViewById(R.id.medico_edt_telefone2);
         medico = new Medico();
 
@@ -111,12 +113,11 @@ public class NovoMedico extends AppCompatActivity {
                 }else {
 
                     if (!TextUtils.isEmpty(campoNome.getText().toString())){
-                        if(!TextUtils.isEmpty(campoTelefone1.getText())){
+                        if(!TextUtils.isEmpty(campoTelefone1.getText().toString())){
+                            Log.i("NovoMed", "Tel: " +campoTelefone1.getText());
 
                         medico.save();
-                        Toast.makeText(this, "SALVO com sucesso", Toast.LENGTH_SHORT).show();
-                        /*Intent intent = new Intent(getApplicationContext(), ListaMedico.class);
-                        startActivity(intent);*/
+                        Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
                         finish();
 
                         }else {
@@ -146,32 +147,6 @@ public class NovoMedico extends AppCompatActivity {
         menuInflater.inflate(R.menu.menu_medico, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
-
-    /*public void inserirMedico(View view){
-         //Medico medico = new Medico();
-        if(medico.getId() == null) {
-
-            if (!TextUtils.isEmpty(ed_nome.getText().toString())) {
-
-                medico.setNome(ed_nome.getText().toString());
-                medico.setTelefone1(ed_telefone1.getText().toString());
-                medico.setTelefone2(ed_telefone2.getText().toString());
-                //medico.setStatus(true);
-                medico.save();
-                Toast.makeText(this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), ListaMedico.class);
-                startActivity(intent);
-                finish();
-            } else {
-                ed_nome.requestFocus();
-                ed_nome.setError("Por favor preecha o campo nome");
-            }
-        }
-
-    }*/
-
 
     public void cancelarMedico(View view){
         finish();

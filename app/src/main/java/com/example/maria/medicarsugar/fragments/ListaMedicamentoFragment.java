@@ -1,9 +1,11 @@
 package com.example.maria.medicarsugar.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -49,7 +51,7 @@ public class ListaMedicamentoFragment extends Fragment {
         fabNovoMedicamento.setOnClickListener(onItemClickNovoMedicamento());
 
         listaViewMedicamento = (ListView) view.findViewById(R.id.medicamento_list_view);
-        listaViewMedicamento.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*listaViewMedicamento.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 medicamento = (Medicamento) listaViewMedicamento.getItemAtPosition(position);
@@ -58,7 +60,7 @@ public class ListaMedicamentoFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+*/
         preencherListaMedicamento();
 
         setHasOptionsMenu(true);
@@ -85,11 +87,11 @@ public class ListaMedicamentoFragment extends Fragment {
 
 
 
-    /*@Override
+    @Override
     public void onResume() {
         super.onResume();
         preencherListaMedicamento();
-    }*/
+    }
     //Metodo da ação do FAB novo Medicamento
     private View.OnClickListener onItemClickNovoMedicamento() {
         return new View.OnClickListener() {
@@ -104,7 +106,7 @@ public class ListaMedicamentoFragment extends Fragment {
     private void preencherListaMedicamento(){
         //adapter = new MedicamentoAdapter(Medicamento.find(Medicamento.class, "status = ? ", "false"), getActivity());
         medicamentoAdapter = new MedicamentoAdapter(Medicamento.findWithQuery(Medicamento.class, "Select * from Medicamento " +
-                "where status = ? ", "true"), getActivity());
+                "where status is ? ", "1"), getActivity());
         listaViewMedicamento.setAdapter(medicamentoAdapter);
     }
 
@@ -136,6 +138,7 @@ public class ListaMedicamentoFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 medicamento.setStatus(false);
                 medicamento.save();
+                preencherListaMedicamento();
                 return false;
             }
         });
@@ -145,8 +148,26 @@ public class ListaMedicamentoFragment extends Fragment {
         itemExcluir.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                medicamento.delete(medicamento);
-                preencherListaMedicamento();
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setIcon(R.drawable.alert_box );
+                builder.setTitle("Confirmação");
+                builder.setMessage("Deseja excluir medicamento ?");
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        medicamento.delete(medicamento);
+                        preencherListaMedicamento();
+                    }
+                });
+                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return false;
             }
         });

@@ -51,15 +51,7 @@ public class ListaCuidadorFragment extends Fragment {
         fab.setOnClickListener(onItemClickNovoCuidador());
 
         listViewCuidador = (ListView) view.findViewById(R.id.cuidador_list_view);
-        listViewCuidador.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cuidador = (Cuidador) listViewCuidador.getItemAtPosition(position);
-                Intent intent = new Intent(getActivity(), NovoCuidador.class);
-                intent.putExtra("cuidador", cuidador);
-                startActivity(intent);
-            }
-        });
+
         registerForContextMenu(listViewCuidador);
         // Inflate the layout for this fragment
         return view;

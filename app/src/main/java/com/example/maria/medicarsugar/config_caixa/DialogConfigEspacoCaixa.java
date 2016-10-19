@@ -1,11 +1,11 @@
 package com.example.maria.medicarsugar.config_caixa;
 
-import android.app.Activity;
+
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
+
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,7 +60,8 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
     private Spinner spinnerSom;
     private View view;
 
-
+    private SeekBar sbVolume;
+    private AudioManager audioManager;
 
     private static final String LOG_TAG = "AudioRecordTest";
     private static String mFileName = null;
@@ -79,6 +81,7 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
     private LayoutCaixaFragment layoutCaixaFragment;
 
 
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -89,6 +92,33 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
         //a1 = (Button) view.findViewById(R.id.bt_a1);
 
         Log.i("DialogCaixa", "LayoutCaixa" +layoutCaixaFragment);
+
+        sbVolume = (SeekBar) view.findViewById(R.id.dialog_config_seekbar_volume);
+        audioManager = (AudioManager) getActivity().getSystemService(getContext().AUDIO_SERVICE);
+        int volumeMax = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        int volumeAtual = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
+        sbVolume.setMax(volumeMax);
+        sbVolume.setProgress(volumeAtual);
+
+        sbVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int volume_musica, boolean fromUser) {
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume_musica, 0);
+
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
 
         btMicrofone = (ImageButton) view.findViewById(R.id.dialog_config_microfone);

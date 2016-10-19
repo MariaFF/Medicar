@@ -60,15 +60,7 @@ public class ListaMedicoFragment extends Fragment{
 
         //Metodo para abrir a tela de cadastro para alterar o registro
         listaViewMedico = (ListView) view.findViewById(R.id.medico_listview);
-        listaViewMedico.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                medico = (Medico) listaViewMedico.getItemAtPosition(position);
-                Intent intent = new Intent(getActivity(), NovoMedico.class);
-                intent.putExtra("medico", medico);
-                startActivity(intent);
-            }
-        });
+
         registerForContextMenu(listaViewMedico);
         return view;
     }

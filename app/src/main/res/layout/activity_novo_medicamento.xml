@@ -25,36 +25,36 @@
             android:hint="@string/medicamento_edt_nome"/>
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data vencimento"/>
         <EditText
-            android:id="@+id/medicamento_vencimento"
-            android:hint="@string/medicamento_edt_vencimento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/medicamento_qtde_total"
-            android:hint="@string/medicamento_edt_qtdeTotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        </android.support.design.widget.TextInputLayout>
+            android:id="@+id/medicamento_ed_dt_vencimento"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="datetime"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data Inicial"/>
-        <ImageButton
-            android:id="@+id/medicamento_bt_dt_inicial"
-            android:src="@drawable/ic_calendar_blank"
-            android:layout_width="50dp"
-            android:layout_height="30dp"/>
+            android:text="@string/medicamento_edt_qtdeTotal"/>
+        <EditText
+            android:id="@+id/medicamento_qtde_total"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data inicial do medicamento"/>
+        <EditText
+            android:id="@+id/medicamento_ed_dt_inicial"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="datetime"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,34 +63,35 @@
         <RadioGroup
             android:id="@+id/medicamento_retomavel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/medicamento_retomavel_sim"
                 android:text="Sim"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                />
 
             <RadioButton
                 android:id="@+id/medicamento_retomavel_nao"
                 android:text="Não"
                 android:layout_marginLeft="8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                />
+
         </RadioGroup>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/medicamento_edt_prazoRetomar"/>
         <EditText
             android:id="@+id/medicamento_prazo_retomar"
-            android:hint="@string/medicamento_edt_prazoRetomar"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"/>
-        </android.support.design.widget.TextInputLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
