@@ -60,6 +60,8 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
     private Spinner spinnerSom;
     private View view;
 
+    private Spinner spinnerAudio;
+
     private SeekBar sbVolume;
     private AudioManager audioManager;
 
@@ -92,6 +94,8 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
         //a1 = (Button) view.findViewById(R.id.bt_a1);
 
         Log.i("DialogCaixa", "LayoutCaixa" +layoutCaixaFragment);
+
+        //spinnerAudio = (Spinner) view.findViewById(R.id.dialog_config_spinner_audio);
 
         sbVolume = (SeekBar) view.findViewById(R.id.dialog_config_seekbar_volume);
         audioManager = (AudioManager) getActivity().getSystemService(getContext().AUDIO_SERVICE);
@@ -151,6 +155,7 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         mPlayer.stop();
                         dismiss();
                     }
@@ -267,9 +272,8 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
 
 
                     listaSom.add("Selecione o som");
-                    listaSom.add(R.raw.faded);
-                    listaSom.add(R.raw.cold_water);
-                    listaSom.add(R.raw.don_t_let_me_down);
+                    listaSom.add(R.raw.beep);
+                    listaSom.add(R.raw.alert);
 
 
                 ArrayAdapter spinnerAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, listaSom){
@@ -299,16 +303,14 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
 
                         }else if(position == 1) {
                             tv.setTextColor(Color.BLACK);
-                            tv.setText("Faded");
+                            tv.setText("Beep");
 
 
-                        }else if(position == 2){
+                        }else if(position == 2) {
                             tv.setTextColor(Color.BLACK);
-                            tv.setText("Cold Water");
-                        }else if(position == 3){
-                            tv.setTextColor(Color.BLACK);
-                            tv.setText("Don't let me down");
+                            tv.setText("Alert");
                         }
+
 
                         return view;
                     }
@@ -320,11 +322,16 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
 
     }
 
-
-
+    /**
+     * Construtor que recupera o audio gravado
+     */
     public DialogConfigEspacoCaixa() {
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         mFileName += "/audiorecordtest.3gp";
+    }
+
+    public void preencherSpinnerAudio(){
+
     }
 
     /**

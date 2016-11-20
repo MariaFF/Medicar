@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Nome cuidador"/>
+        android:text="Nome do responsável*"/>
     <EditText
         android:id="@+id/cuidador_ed_nome"
         android:layout_width="match_parent"
@@ -25,10 +25,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Telefone"/>
+        android:text="Telefone*"/>
     <com.example.maria.medicarsugar.util.PhoneEditText
         android:id="@+id/cuidador_ed_telefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="* Campos Obrigatórios"
+        android:layout_marginTop="90dp"
+        android:textColor="#8B0000"
+        android:id="@+id/textView" />
 
 </LinearLayout>

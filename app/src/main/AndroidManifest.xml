@@ -17,11 +17,11 @@
         <!-- Nome do banco -->
         <meta-data
             android:name="DATABASE"
-            android:value="medicar_lista_vazia.db"/>
+            android:value="medicar_final3.db"/>
         <!-- VERSÃO -->
         <meta-data
             android:name="VERSION"
-            android:value="3"/>
+            android:value="1"/>
         <!-- mostra um log das consultas realizadas -->
         <meta-data
             android:name="QUERY_LOG"
@@ -65,7 +65,8 @@
         </activity>
         <activity android:name=".cuidador.NovoCuidador">
         </activity>
-
+        <activity android:name=".introducao.intro">
+        </activity>
     </application>
 
 </manifest>

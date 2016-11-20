@@ -1,8 +1,11 @@
 package com.example.maria.medicarsugar;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -32,6 +35,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private Drawer result;
     private ListView listViewInicial;
     private List<Movimentacao> listarMovimentacao;
@@ -48,9 +52,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //estimarDuracaoMedicamento();
+
         listViewInicial = (ListView) findViewById(R.id.listViewInicio);
         //listarMovimentacao = Movimentacao.listAll(Movimentacao.class);
-        listarMedicamentos = Medicamento.listAll(Medicamento.class);
+        listarMed();
 
 
         if(listarMedicamentos.size() == 0){
@@ -149,6 +156,64 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void listarMed() {
+
+                listarMedicamentos = Medicamento.findWithQuery(Medicamento.class, "Select * from Medicamento " +
+                        "where status is ? ", "1");
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        listarMed();
+        trocarTela();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        trocarTela();
+    }
+
+    public void trocarTela() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction tx = fragmentManager.beginTransaction();
+        listarMed();
+        switch (getTitle().toString()) {
+
+            case "Lista de Cuidadores":
+                Log.i("main", "primeiro case");
+                tx.replace(R.id.main_frame, new ListaCuidadorFragment());
+                tx.commit();
+                break;
+
+            case "Lista de Médicos":
+                Log.i("main", "2 case");
+                tx.replace(R.id.main_frame, new ListaMedicoFragment());
+                tx.commit();
+                break;
+
+            case "Lista de medicamentos":
+                /*tx.replace(R.id.main_frame, new ListaMedicamentoFragment());
+                tx.commit();*/
+
+                Log.i("main", "3 case");
+                if (listarMedicamentos.size() == 0) {
+                    Log.i("main", "3 if case");
+                    tx.replace(R.id.main_frame, new FragmentListaVazia());
+                    tx.commit();
+
+                } else {
+                    Log.i("main", "3 else case");
+                    tx.replace(R.id.main_frame, new ListaMedicamentoFragment());
+                    tx.commit();
+
+                }
+                break;
+        }
+    }
 
 
 }

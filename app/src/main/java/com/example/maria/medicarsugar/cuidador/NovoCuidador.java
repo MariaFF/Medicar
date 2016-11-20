@@ -23,6 +23,7 @@ public class NovoCuidador extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novo_cuidador);
+        setTitle("Novo cuidador");
 
         cuidador = new Cuidador();
 
@@ -54,9 +55,14 @@ public class NovoCuidador extends AppCompatActivity {
                 //ALTERAR
                 if(cuidador.getId() != null){
                     if (!TextUtils.isEmpty(campoNome.getText().toString())){
-                        cuidador.save();
-                        Toast.makeText(this, "Alterado", Toast.LENGTH_LONG).show();
-                        finish();
+                        if(!TextUtils.isEmpty(campoTelefone.getText().toString())) {
+                            cuidador.save();
+                            Toast.makeText(this, "Alterado", Toast.LENGTH_LONG).show();
+                            finish();
+                        }else{
+                            campoTelefone.requestFocus();
+                            campoTelefone.setError("Por favor, preencha campo telefone");
+                        }
                     }else {
                         campoNome.requestFocus();
                         campoNome.setError("Por favor, preencha campo nome");
@@ -64,9 +70,14 @@ public class NovoCuidador extends AppCompatActivity {
                     //SALVAR
                 }else{
                     if(!TextUtils.isEmpty(campoNome.getText().toString())){
-                        cuidador.save();
-                        Toast.makeText(this, "Salvo", Toast.LENGTH_LONG).show();
-                        finish();
+                        if(!TextUtils.isEmpty(campoTelefone.getText().toString())) {
+                            cuidador.save();
+                            Toast.makeText(this, "Salvo", Toast.LENGTH_LONG).show();
+                            finish();
+                        }else{
+                            campoTelefone.requestFocus();
+                            campoTelefone.setError("Por favor, preencha o campo telefone");
+                        }
                     }else {
                         campoNome.requestFocus();
                         campoNome.setError("Por favor, preencha campo nome");

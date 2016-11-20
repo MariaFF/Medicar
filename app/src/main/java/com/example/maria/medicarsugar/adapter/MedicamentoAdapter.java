@@ -25,6 +25,8 @@ public class MedicamentoAdapter extends BaseAdapter{
     private List<Medicamento> listaMedicamento;
     private Context context;
 
+    //private TextView tvQtdeDias = null;
+
     private TextView tvDose1;
     private TextView tvDose2;
     private TextView tvDose3;
@@ -37,6 +39,7 @@ public class MedicamentoAdapter extends BaseAdapter{
         this.listaMedicamento = listaMedicamento;
         this.context = context;
     }
+
 
     @Override
     public int getCount() {
@@ -60,6 +63,8 @@ public class MedicamentoAdapter extends BaseAdapter{
         View view = LayoutInflater.from(context).inflate(R.layout.medicamento_adapter, parent, false);
         Medicamento medicamento = listaMedicamento.get(position);
 
+
+
         tvDose1 = (TextView) view.findViewById(R.id.medicamento_tv_dose1);
         tvDose2 = (TextView) view.findViewById(R.id.medicamento_tv_dose2);
         tvDose3 = (TextView) view.findViewById(R.id.medicamento_tv_dose3);
@@ -79,6 +84,11 @@ public class MedicamentoAdapter extends BaseAdapter{
         TextView tvNome = (TextView) view.findViewById(R.id.medicamento_tv_nome);
         tvNome.setText(medicamento.getNome());
 
+/*
+        TextView tvQtdeDias = (TextView) view.findViewById(R.id.medicamento_tv_qtdeDias);
+        tvQtdeDias.setText("Dias restantes: " + medicamento.getQtdeRestante().toString());
+*/
+
 
       if(medicamento.getIntervalo1() != null) {
             tvHorario1.setVisibility(View.VISIBLE);
@@ -93,6 +103,7 @@ public class MedicamentoAdapter extends BaseAdapter{
             String sDose1 = format.format(medicamento.getDose1());
             tvHorario1.setText("Hora: " + horaIntervalo1);
             tvDose1.setText("Dose: " + sDose1);
+
         }
         if(medicamento.getIntervalo2() != null){
             tvHorario2.setVisibility(View.VISIBLE);
@@ -106,6 +117,7 @@ public class MedicamentoAdapter extends BaseAdapter{
             String sDose2 = format.format(medicamento.getDose2());
             tvHorario2.setText("Hora: " + horaIntervalo2);
             tvDose2.setText("Dose: " + sDose2);
+
         }
         if(medicamento.getIntervalo3() != null){
             tvHorario3.setVisibility(View.VISIBLE);
@@ -119,6 +131,7 @@ public class MedicamentoAdapter extends BaseAdapter{
             String sDose3 = format.format(medicamento.getDose3());
             tvHorario3.setText("Hora: " + horaIntervalo3);
             tvDose3.setText("Dose: " + sDose3);
+
         }
 
 

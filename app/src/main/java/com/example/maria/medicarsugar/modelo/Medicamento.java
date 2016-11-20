@@ -1,6 +1,8 @@
 package com.example.maria.medicarsugar.modelo;
 
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.widget.RadioGroup;
 
 import com.orm.SugarRecord;
@@ -25,15 +27,15 @@ public class Medicamento extends SugarRecord implements Serializable {
     private Date intervalo1;
     private Date intervalo2;
     private Date intervalo3;
+    private Date intervalo4;
 
-    private Integer qtdeTotal;
-    //private Integer qtdeRestante;
-
-
+    private Double qtdeTotal;
+    private String qtdeRestante;
 
     private Double dose1;
     private Double dose2;
     private Double dose3;
+    private Double dose4;
 
     private boolean status;
 
@@ -115,12 +117,12 @@ public class Medicamento extends SugarRecord implements Serializable {
         this.intervalo3 = intervalo3;
     }
 
-    public Integer getQtdeTotal() {
+    public Double getQtdeTotal() {
 
         return qtdeTotal;
     }
 
-    public void setQtdeTotal(Integer qtdeTotal) {
+    public void setQtdeTotal(Double qtdeTotal) {
         this.qtdeTotal = qtdeTotal;
     }
 
@@ -148,14 +150,33 @@ public class Medicamento extends SugarRecord implements Serializable {
         this.dose3 = dose3;
     }
 
-/*    public Integer getQtdeRestante() {
+    public Date getIntervalo4() {
+        return intervalo4;
+    }
 
+    public void setIntervalo4(Date intervalo4) {
+        this.intervalo4 = intervalo4;
+    }
+
+    public Double getDose4() {
+        return dose4;
+    }
+
+    public void setDose4(Double dose4) {
+        this.dose4 = dose4;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public String getQtdeRestante() {
         return qtdeRestante;
     }
 
-    public void setQtdeRestante(Integer qtdeRestante) {
+    public void setQtdeRestante(String qtdeRestante) {
         this.qtdeRestante = qtdeRestante;
-    }*/
+    }
 
     public boolean getStatus() {
         return status;

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.maria.medicarsugar.ListaVazia.FragmentListaVazia;
 import com.example.maria.medicarsugar.R;
 import com.example.maria.medicarsugar.adapter.MedicamentoAdapter;
 import com.example.maria.medicarsugar.adapter.MedicoAdapter;
@@ -35,8 +38,11 @@ import java.util.List;
 public class ListaMedicamentoFragment extends Fragment {
 
     private Medicamento medicamento;
+    private List<Medicamento> listarMed;
     private MedicamentoAdapter medicamentoAdapter;
     private ListView listaViewMedicamento;
+
+    private List<Medicamento> listarMedicamentos;
 
     private ActionButton fabNovoMedicamento;
 
@@ -138,7 +144,19 @@ public class ListaMedicamentoFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 medicamento.setStatus(false);
                 medicamento.save();
-                preencherListaMedicamento();
+                listarMedicamentos = Medicamento.findWithQuery(Medicamento.class, "Select * from Medicamento " +
+                        "where status is ? ", "1");
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction tx = fragmentManager.beginTransaction();
+
+                if(listarMedicamentos.size() == 0){
+                    tx.replace(R.id.main_frame, new FragmentListaVazia());
+                    tx.commit();
+                }else {
+                    tx.replace(R.id.main_frame, new ListaMedicamentoFragment());
+                    tx.commit();
+                    preencherListaMedicamento();
+                }
                 return false;
             }
         });
@@ -156,7 +174,20 @@ public class ListaMedicamentoFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         medicamento.delete(medicamento);
-                        preencherListaMedicamento();
+                        listarMedicamentos = Medicamento.findWithQuery(Medicamento.class, "Select * from Medicamento " +
+                                "where status is ? ", "1");
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction tx = fragmentManager.beginTransaction();
+
+                        if(listarMedicamentos.size() == 0){
+                            tx.replace(R.id.main_frame, new FragmentListaVazia());
+                            tx.commit();
+                        }else {
+                            tx.replace(R.id.main_frame, new ListaMedicamentoFragment());
+                            tx.commit();
+                            preencherListaMedicamento();
+                        }
+
                     }
                 });
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -199,4 +230,12 @@ public class ListaMedicamentoFragment extends Fragment {
     }
 
 
+    public void verificarListaVazia(){
+        listarMed = Medicamento.findWithQuery(Medicamento.class, "Select * from Medicamento " +
+                "where status is ? ", "1");
+
+        if(listarMed.size() == 0){
+
+        }
+    }
 }
