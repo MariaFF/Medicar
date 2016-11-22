@@ -211,8 +211,8 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
 
                     case 1:
                         if(mStartPlaying) {
-                            tv.setText("Faded");
-                            mPlayer = MediaPlayer.create(getContext(), R.raw.faded);
+                            tv.setText("Beep");
+                            mPlayer = MediaPlayer.create(getContext(), R.raw.beep);
                             mPlayer.start();
 
                         }
@@ -221,22 +221,15 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
 
                     case 2:
                         if (mStartPlaying) {
-                            tv.setText("Cold Water");
-                            mPlayer = MediaPlayer.create(getContext(), R.raw.cold_water);
+                            tv.setText("Alert");
+                            mPlayer = MediaPlayer.create(getContext(), R.raw.alert);
                             mPlayer.start();
                         }
 
                         break;
 
-                    case 3:
-                        tv.setText("Don't let me down");
-                        mPlayer = MediaPlayer.create(getContext(), R.raw.don_t_let_me_down);
-                        mPlayer.start();
-
-                        break;
-
                 }
-                mStartRecording = !mStartRecording;
+                //mStartRecording = !mStartRecording;
             }
 
             @Override
@@ -255,9 +248,11 @@ public class DialogConfigEspacoCaixa extends DialogFragment {
         new Thread(){
             public void run(){
                 Log.i("Dialog", "Thread preencher");
-                listaMedicamento = Medicamento.listAll(Medicamento.class);
+                //listaMedicamento = Medicamento.listAll(Medicamento.class);
+                listaMedicamento = Medicamento.findWithQuery(Medicamento.class, "Select * from Medicamento " +
+                        "where status is ? ", "1");
 
-                adapter = new SpinnerMedicamento(Medicamento.listAll(Medicamento.class), getActivity());
+                adapter = new SpinnerMedicamento(listaMedicamento, getActivity());
                 spinnerMedicamento.setAdapter(adapter);
 
             }

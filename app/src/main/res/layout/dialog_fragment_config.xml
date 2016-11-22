@@ -56,7 +56,8 @@
             android:background="#ffffff"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_play_black"/>
+            android:src="@drawable/ic_play_black"
+            />
 
     </LinearLayout>
     <!--<TextView

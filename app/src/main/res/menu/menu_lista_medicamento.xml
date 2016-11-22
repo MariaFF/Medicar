@@ -4,11 +4,4 @@
       xmlns:tools="http://schemas.android.com/tools">
 
 
-    <item
-        android:id="@+id/menu_medicamento_pesquisar"
-        android:title="Pesquisar"
-        android:icon="@drawable/ic_pesquisar"
-        app:showAsAction="always"
-        android:actionViewClass="android.widget.SearchView"/>
-
 </menu>

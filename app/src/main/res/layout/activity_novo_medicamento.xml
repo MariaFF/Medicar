@@ -50,7 +50,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data inicial do medicamento"/>
+            android:text="Data inicial do medicamento*"/>
         <EditText
             android:id="@+id/medicamento_ed_dt_inicial"
             android:layout_width="150dp"

@@ -38,10 +38,12 @@ public class DialogIntervaloMedicamento extends DialogFragment {
     private Date intervalo1;
     private Date intervalo2;
     private Date intervalo3;
+    private Date intervalo4;
 
     private Date hora1;
     private Date hora2;
     private Date hora3;
+    private Date hora4;
 
 
     @NonNull
@@ -51,6 +53,7 @@ public class DialogIntervaloMedicamento extends DialogFragment {
 
         campoHoraIntervaloDialog = (EditText) view.findViewById(R.id.timePicker_dialog_hora_medicamento);
         campoDose = (EditText) view.findViewById(R.id.quantidade_dialog);
+
         campoHoraIntervaloDialog.setOnClickListener(chamarDialogHora());
 
         AlertDialog.Builder alertIntervalo = new AlertDialog.Builder(getActivity())
@@ -112,6 +115,19 @@ public class DialogIntervaloMedicamento extends DialogFragment {
                             sDose3 = format.format(getMedicamento().getDose3());
                             novoMedicamento.campoIntervalo3.setText("Hora: " + horaIntervalo3 + " - " + "Dose: " + sDose3);
 
+                        }if(novoMedicamento.campoIntervalo4.isFocused()){
+                            getMedicamento().setDose4(Double.valueOf(campoDose.getText().toString()));
+                            medicamento.setIntervalo4(hora4);
+                            String sDose4;
+                            intervalo4 = medicamento.getIntervalo4();
+
+                            Log.i("dialog", "Intervalo4 " +medicamento.getIntervalo4());
+                            SimpleDateFormat timeFormatIntervalo = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                            final String horaIntervalo4 = timeFormatIntervalo.format(intervalo4);
+
+                            DecimalFormat format = new DecimalFormat("0.#");
+                            sDose4 = format.format(getMedicamento().getDose4());
+                            novoMedicamento.campoIntervalo3.setText("Hora: " + horaIntervalo4 + " - " + "Dose: " + sDose4);
                         }
 
 
@@ -234,10 +250,17 @@ public class DialogIntervaloMedicamento extends DialogFragment {
                 final String horaIntervalo3 = timeFormatIntervalo3.format(intervalo3);
                 campoHoraIntervaloDialog.setText(horaIntervalo3);
                 Log.i("dialog", "terceiro else if setHora");
+            }if(novoMedicamento.campoIntervalo4.isFocused()) {
+                //pegando a hora que a pessoa selecionou do terceiro intervalo
+                hora4 = calendar.getTime();
+                medicamento.setIntervalo4(hora4);
+                intervalo4 = medicamento.getIntervalo4();
+
+                SimpleDateFormat timeFormatIntervalo4 = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                final String horaIntervalo4 = timeFormatIntervalo4.format(intervalo3);
+                campoHoraIntervaloDialog.setText(horaIntervalo4);
+                Log.i("dialog", "terceiro else if setHora");
             }
-
-
-
 
             /*Date hora = calendar.getTime();
             medicamento.setIntervalo(hora);

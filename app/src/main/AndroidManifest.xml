@@ -17,7 +17,7 @@
         <!-- Nome do banco -->
         <meta-data
             android:name="DATABASE"
-            android:value="medicar_final3.db"/>
+            android:value="medicar_final4.db"/>
         <!-- VERSÃO -->
         <meta-data
             android:name="VERSION"

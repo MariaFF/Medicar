@@ -205,6 +205,7 @@ public class ListaMedicamentoFragment extends Fragment {
     }
 
 
+/*
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -213,7 +214,8 @@ public class ListaMedicamentoFragment extends Fragment {
         menuInflater.inflate(R.menu.menu_lista_medicamento, menu);
 
         MenuItem itemPesquisa = menu.findItem(R.id.menu_medicamento_pesquisar);
-        /*SearchView pesquisar = (SearchView) itemPesquisa.getActionView();
+        */
+/*SearchView pesquisar = (SearchView) itemPesquisa.getActionView();
         pesquisar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -225,9 +227,11 @@ public class ListaMedicamentoFragment extends Fragment {
                 return false;
             }
         });
-*/
+*//*
+
         super.onCreateOptionsMenu(menu, inflater);
     }
+*/
 
 
     public void verificarListaVazia(){

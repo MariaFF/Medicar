@@ -1,11 +1,17 @@
 package com.example.maria.medicarsugar.fragments;
 
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -86,6 +92,23 @@ public class ListaCuidadorFragment extends Fragment {
         final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         final Cuidador cuidador = (Cuidador) listViewCuidador.getItemAtPosition(info.position);
 
+        MenuItem itemLigar = menu.add("Ligar");
+        itemLigar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 1);
+                }else{
+                    Intent intentLigar = new Intent(Intent.ACTION_CALL);
+                    intentLigar.setData(Uri.parse("tel: " +cuidador.getTelefone()));
+                    startActivity(intentLigar);
+                }
+                return false;
+            }
+        });
+
+
         //ALTERAR
         MenuItem itemAlterar = menu.add("Alterar");
         itemAlterar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -107,9 +130,28 @@ public class ListaCuidadorFragment extends Fragment {
         itemExcluir.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                cuidador.delete(cuidador);
-                preencherLista();
-                return false;
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setIcon(R.drawable.alert_box );
+                builder.setTitle("Confirmação");
+                builder.setMessage("Deseja excluir cuidador ?");
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        cuidador.delete(cuidador);
+                        preencherLista();
+                    }
+                    });
+                    builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    return false;
+
             }
         });
     }

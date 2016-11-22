@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.maria.medicarsugar.R;
 import com.example.maria.medicarsugar.modelo.Cuidador;
 import com.example.maria.medicarsugar.modelo.Medico;
+import com.example.maria.medicarsugar.util.Mask;
 
 public class NovoCuidador extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class NovoCuidador extends AppCompatActivity {
 
         campoNome = (EditText) findViewById(R.id.cuidador_ed_nome);
         campoTelefone = (EditText) findViewById(R.id.cuidador_ed_telefone);
+        campoTelefone.addTextChangedListener(Mask.insert("(##)####-#####", campoTelefone));
 
         if(getIntent().hasExtra("idCuidador")){
             Bundle bundle = getIntent().getExtras();
@@ -55,7 +57,7 @@ public class NovoCuidador extends AppCompatActivity {
                 //ALTERAR
                 if(cuidador.getId() != null){
                     if (!TextUtils.isEmpty(campoNome.getText().toString())){
-                        if(!TextUtils.isEmpty(campoTelefone.getText().toString())) {
+                        if(!TextUtils.isEmpty(campoTelefone.getText())) {
                             cuidador.save();
                             Toast.makeText(this, "Alterado", Toast.LENGTH_LONG).show();
                             finish();
@@ -70,7 +72,7 @@ public class NovoCuidador extends AppCompatActivity {
                     //SALVAR
                 }else{
                     if(!TextUtils.isEmpty(campoNome.getText().toString())){
-                        if(!TextUtils.isEmpty(campoTelefone.getText().toString())) {
+                        if(!TextUtils.isEmpty(campoTelefone.getText())) {
                             cuidador.save();
                             Toast.makeText(this, "Salvo", Toast.LENGTH_LONG).show();
                             finish();

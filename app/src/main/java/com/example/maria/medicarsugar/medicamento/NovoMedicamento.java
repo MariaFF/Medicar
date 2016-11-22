@@ -94,7 +94,7 @@ public class NovoMedicamento extends AppCompatActivity {
         setContentView(R.layout.activity_novo_medicamento);
 
         //preencherMedicoQueReceitouMedicamento();
-        setTitle("Nome medicamento");
+        setTitle("Novo medicamento");
         medicamento = new Medicamento();
         recuperarComponentes();
 
@@ -128,14 +128,6 @@ public class NovoMedicamento extends AppCompatActivity {
                 "where status is ? ", "1");
 
         //FINAL DO ONCREATE
-    }
-
-
-    private void preencheFormularioMedicamento(Medicamento medicamento) {
-        campoNome.setText(medicamento.getNome().toString());
-        verificarCampoPreenchidoParaPreencherForm(medicamento);
-
-
     }
 
     /**
@@ -261,30 +253,29 @@ public class NovoMedicamento extends AppCompatActivity {
                 // SALVAR
                 }else{
                     if(!TextUtils.isEmpty(campoNome.getText().toString())) {
-                        if(!medicamento.getPrazoRetomar().equals("Selecione o prazo")) {
-                            estimarDuracaoMedicamento();
-                            medicamento.save();
-                            Log.i("main", "Qtde depois do save : " + medicamento.getQtdeRestante());
-                            Toast.makeText(NovoMedicamento.this, "Salvo", Toast.LENGTH_SHORT).show();
-                            finish();
-                            //trocaTela();
-                            /*
-                            FragmentManager fragmentManager = getSupportFragmentManager();
-                            FragmentTransaction tx = fragmentManager.beginTransaction();
-                            tx.replace(R.id.frame_lista_med_vazia, new ListaMedicamentoFragment());
-                            tx.commit();*/
-                        }else{
-                            TextView errorText = (TextView)spinnerPrazoRetormar.getSelectedView();
-                            errorText.setError("");
-                            errorText.setTextColor(Color.RED);//just to highlight that this is an error
-                            errorText.setText("Por favor, selecione uma opção");//changes the selected item text to this
+                        //if(campoQtdeTotal.getText().length() != 0) {
+                            if (!medicamento.getPrazoRetomar().equals("Selecione o prazo")) {
+                                medicamento.save();
+                                Log.i("main", "Qtde depois do save : " + medicamento.getQtdeRestante());
+                                Toast.makeText(NovoMedicamento.this, "Salvo", Toast.LENGTH_SHORT).show();
+                                finish();
+
+                            } else {
+                                TextView errorText = (TextView) spinnerPrazoRetormar.getSelectedView();
+                                errorText.setError("");
+                                errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                                errorText.setText("Por favor, selecione uma opção");//changes the selected item text to this
+                            }
+                        }else {
+                            campoQtdeTotal.requestFocus();
+                            campoQtdeTotal.setError("Por favor, preencha esse campo");
                         }
 
 
-                    }else {
+                    /*}else {
                         campoNome.requestFocus();
                         campoNome.setError("Por favor, preencha o campo nome");
-                    }
+                    }*/
                 }
 
 
@@ -427,7 +418,7 @@ public class NovoMedicamento extends AppCompatActivity {
      * Criar SpinnerIntervalo da frequencia dos medicamentos, essas informações preenche o spinner
      * **/
     private void criarIntervalosPreDefinidos() {
-        intervalos.add("Frequencia");
+        intervalos.add("Frequência");
         intervalos.add("Uma vez ao dia");
         intervalos.add("Duas vezes ao dia");
         intervalos.add("Três vezes ao dia");
@@ -552,11 +543,22 @@ public class NovoMedicamento extends AppCompatActivity {
         }.start();
     }
 
+    private void preencheFormularioMedicamento(Medicamento medicamento) {
+        campoNome.setText(medicamento.getNome().toString());
+        campoQtdeTotal.setText(medicamento.getQtdeTotal().toString());
+        campoDtInicio.setText(medicamento.getDtInicio().toString());
+        verificarCampoPreenchidoParaPreencherForm(medicamento);
+
+
+    }
+
     public Medicamento pegaMedicamento(){
         medicamento.setNome(campoNome.getText().toString());
+        medicamento.setDtVencimento(campoDtVencimento.getText().toString());
+        medicamento.setDtInicio(campoDtInicio.getText().toString());
         verificarRadioButton();
         medicamento.setQtdeTotal(Double.valueOf(campoQtdeTotal.getText().toString()));
-        //medicamento.setPrazoRetomar(spinnerPrazoRetormar.getText().toString());
+        //medicamento.setPrazoRetomar(spinnerPrazoRetormar.getItemAtPosition());
         medicamento.setStatus(true);
 
         return medicamento;
@@ -581,39 +583,30 @@ public class NovoMedicamento extends AppCompatActivity {
         new Thread() {
             public void run() {
 
-                Double qtdeRestanteDias = null;
-                //quantidade total de comprimidos
-                //Double qtdeTotal = medicamento.getQtdeTotal();
+            Double qtdeRestanteDias = null;
+            Double qtdeMedTomadoDia = null;
 
-                Double qtdeMedTomadoDia = null;
-
-                //qtdeTomadaDia = 1 + 1 + 1;
-                //3 é a qtde tomada por dia
-
-                //qtdeTotal / qtdeTomadaDia = Quantos dias vai durar
-
-                //se ele tomar 4 doses, ta tirando todas as 4 doses da qtdeTotal,
-                if (medicamento.getDose4() != null) {
-                    qtdeMedTomadoDia = medicamento.getDose1() + medicamento.getDose2() + medicamento.getDose3() + medicamento.getDose4();
-                    qtdeRestanteDias = medicamento.getQtdeTotal() / qtdeMedTomadoDia;
-                    medicamento.setQtdeRestante(String.valueOf(qtdeRestanteDias));
-                } else if (medicamento.getDose3() != null) {
-                    qtdeMedTomadoDia = medicamento.getDose1() + medicamento.getDose2() + medicamento.getDose3();
-                    qtdeRestanteDias = medicamento.getQtdeTotal() / qtdeMedTomadoDia;
-                    medicamento.setQtdeRestante(String.valueOf(qtdeRestanteDias));
-                } else if (medicamento.getDose2() != null) {
-                    qtdeMedTomadoDia = medicamento.getDose1() + medicamento.getDose2();
-                    qtdeRestanteDias = medicamento.getQtdeTotal() / qtdeMedTomadoDia;
-                    medicamento.setQtdeRestante(String.valueOf(qtdeRestanteDias));
-                    Log.i("main", "Qtde restante em dias" +qtdeRestanteDias);
-                } else if (medicamento.getDose1() != null) {
-                    qtdeMedTomadoDia = medicamento.getDose1();
-                    Log.i("main", "Dose1" + medicamento.getDose1());
-                    Log.i("main", "Qtde total" + medicamento.getQtdeTotal());
-                    qtdeRestanteDias = medicamento.getQtdeTotal() / medicamento.getDose1();
-                    medicamento.setQtdeRestante(String.valueOf(qtdeRestanteDias));
-                    Log.i("main", "qtde restante" + qtdeRestanteDias);
-                }
+            if (medicamento.getDose4() != null) {
+                qtdeMedTomadoDia = medicamento.getDose1() + medicamento.getDose2() + medicamento.getDose3() + medicamento.getDose4();
+                qtdeRestanteDias = medicamento.getQtdeTotal() / qtdeMedTomadoDia;
+                medicamento.setQtdeRestante(String.valueOf(qtdeRestanteDias));
+            } else if (medicamento.getDose3() != null) {
+                qtdeMedTomadoDia = medicamento.getDose1() + medicamento.getDose2() + medicamento.getDose3();
+                qtdeRestanteDias = medicamento.getQtdeTotal() / qtdeMedTomadoDia;
+                medicamento.setQtdeRestante(String.valueOf(qtdeRestanteDias));
+            } else if (medicamento.getDose2() != null) {
+                qtdeMedTomadoDia = medicamento.getDose1() + medicamento.getDose2();
+                qtdeRestanteDias = medicamento.getQtdeTotal() / qtdeMedTomadoDia;
+                medicamento.setQtdeRestante(String.valueOf(qtdeRestanteDias));
+                Log.i("main", "Qtde restante em dias" +qtdeRestanteDias);
+            } else if (medicamento.getDose1() != null) {
+                qtdeMedTomadoDia = medicamento.getDose1();
+                Log.i("main", "Dose1" + medicamento.getDose1());
+                Log.i("main", "Qtde total" + medicamento.getQtdeTotal());
+                qtdeRestanteDias = medicamento.getQtdeTotal() / medicamento.getDose1();
+                medicamento.setQtdeRestante(String.valueOf(qtdeRestanteDias));
+                Log.i("main", "qtde restante" + qtdeRestanteDias);
+            }
 
 
             }
