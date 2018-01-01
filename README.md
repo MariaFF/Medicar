@@ -1,9 +1,11 @@
 # Medicar
-O aplicativo Medicar pertence a um projeto multidisciplinar que tinha por objetivo desenvolver um dispensador de medicamentos automatizado. O app foi desenvolvido como proposto de tcc.
+  O aplicativo Medicar pertence a um projeto multidisciplinar que tinha por objetivo desenvolver um dispensador de medicamentos automatizado. O app foi desenvolvido como proposto de tcc.
 - Objetivo:
-O aplicativo Medicar (módulo Mobile) foi desenvolvido para Android (smartphones ou tablets) e será responsável pelo gerenciamento de pacientes, medicamentos, notificação de horários e dosagens, bem como configurações de uso e comportamento do dispensador, proporcionando, assim, para os pacientes e seus cuidadores uma maior facilidade na gestão do consumo.
+
+  O aplicativo Medicar (módulo Mobile) foi desenvolvido para Android (smartphones ou tablets) e será responsável pelo gerenciamento de pacientes, medicamentos, notificação de horários e dosagens, bem como configurações de uso e comportamento do dispensador, proporcionando, assim, para os pacientes e seus cuidadores uma maior facilidade na gestão do consumo.
 - Objetivos específicos:
-Para a realização da inserção de dados no dispensador de medicamentos, o aplicativo para dispositivos móveis permitirá ao usuário realizar os seguintes cadastros:
+
+  Para a realização da inserção de dados no dispensador de medicamentos, o aplicativo para dispositivos móveis permitirá ao usuário realizar os seguintes cadastros:
 - do paciente que deverá tomar a medicação;
 - de informações do medicamento, como: nome, data de validade, data de início e outras que o usuário julgar necessária;
 - da quantidade de medicamento, quantos serão tomados ao dia;
